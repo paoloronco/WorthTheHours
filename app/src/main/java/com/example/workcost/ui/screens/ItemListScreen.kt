@@ -18,9 +18,8 @@ import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.LargeFloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -52,7 +51,7 @@ fun ItemListScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { },
+                title = { Text("Worth The Hours", style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = Color.Transparent
                 ),
@@ -64,7 +63,7 @@ fun ItemListScreen(
             )
         },
         floatingActionButton = {
-            FloatingActionButton(onClick = onAddItem) {
+            LargeFloatingActionButton(onClick = onAddItem) {
                 Icon(Icons.Default.Add, contentDescription = "Add Item")
             }
         },
@@ -83,13 +82,15 @@ fun ItemListScreen(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(paddingValues)
-                    .padding(16.dp),
-                verticalArrangement = Arrangement.spacedBy(8.dp)
+                    .padding(horizontal = 16.dp),
+                verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 items(state.items) { itemWorkTime ->
-                    ElevatedCard(
+                    Card(
                         modifier = Modifier.fillMaxWidth(),
-                        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+                        colors = CardDefaults.cardColors(
+                            containerColor = MaterialTheme.colorScheme.surfaceVariant
+                        )
                     ) {
                         Row(
                             modifier = Modifier
@@ -98,8 +99,8 @@ fun ItemListScreen(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Column(modifier = Modifier.weight(1f)) {
-                                Text(itemWorkTime.item.name, fontWeight = FontWeight.Bold)
-                                Text("€${String.format("%.2f", itemWorkTime.item.price)}")
+                                Text(itemWorkTime.item.name, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleLarge)
+                                Text("€${String.format("%.2f", itemWorkTime.item.price)}", style = MaterialTheme.typography.bodyLarge)
                             }
                             Spacer(modifier = Modifier.width(16.dp))
                             Card(
@@ -123,7 +124,8 @@ fun ItemListScreen(
                                     Text(
                                         text = itemWorkTime.workTime,
                                         color = MaterialTheme.colorScheme.onSecondaryContainer,
-                                        fontWeight = FontWeight.Bold
+                                        fontWeight = FontWeight.Bold,
+                                        style = MaterialTheme.typography.titleMedium
                                     )
                                 }
                             }
