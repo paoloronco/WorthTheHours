@@ -1,40 +1,77 @@
 # WorthTheHours
-[![Ask DeepWiki](https://devin.ai/assets/askdeepwiki.png)](https://deepwiki.com/paoloronco/WorthTheHours)
 
-WorthTheHours is a simple yet powerful Android application designed to help you reframe the cost of items by translating their monetary value into the hours of work required to afford them. By inputting your salary details, you can add a list of items and instantly see the time investment each one represents.
+**WorthTheHours** is a native Android app that helps you rethink spending by converting prices into **hours of work**.
 
-## Features
+Instead of asking *“Can I afford this?”*, the app helps you ask a more meaningful question:
 
-- **Salary Calculation**: Set your net hourly wage directly, or calculate it based on your monthly net salary and total working hours per month. Your salary data is stored securely using Android's EncryptedSharedPreferences.
-- **Item Management**: Easily add items you're considering buying, specifying their name and price.
-- **Work-Time Conversion**: The app automatically displays how many hours and minutes of work are needed to pay for each item on your list, based on your configured wage.
-- **Persistent List**: Your item list is saved locally using Room, so your data is always available when you open the app.
-- **Clean, Modern UI**: Built entirely with Jetpack Compose and Material 3 for a smooth and intuitive user experience.
+> **“How many hours of my life does this cost?”**
 
-## Screens
+By visualizing expenses in terms of working time, WorthTheHours encourages conscious, mindful purchasing decisions.
+
+*** 
+
+## ✨ Key Features
+
+- **Flexible Salary Setup**
+  - Enter your net **hourly wage** directly  
+  - or calculate it from **monthly net salary + working hours**
+  - Salary data is stored **securely and locally**, encrypted on the device
+
+- **Item Tracking**
+  - Add items with a name and price
+  - Instantly see how many **hours and minutes of work** each item represents
+
+- **Automatic Time Conversion**
+  - Prices are converted into working time using your configured hourly wage
+  - Results are displayed in a clear, human-friendly format
+
+- **Local & Private**
+  - No accounts
+  - No cloud sync
+  - No network access
+  - All data stays on your device
+
+- **Modern UI**
+  - Built entirely with **Jetpack Compose**
+  - Uses **Material 3** for a clean, minimal, modern look
+  - Supports light and dark themes
+
+*** 
+
+## 📱 App Screens
 
 ### Salary Settings
-The first time you open the app, you'll be directed to the Salary Settings screen. Here you can either input your net hourly wage or calculate it from your monthly salary and work hours. This screen can be revisited at any time from the main list.
+Set your net hourly wage or calculate it from your monthly salary and working hours.  
+This can be changed at any time from the main screen.
 
 ### Item List
-The main screen displays all your saved items. Each item card shows its name, price, and the calculated work time needed to purchase it. You can delete items directly from this list or use the floating action button to add a new one.
+The main screen shows your saved items.  
+Each item displays:
+- Name
+- Price
+- Equivalent working time (hours + minutes)
+
+Items can be removed with a simple action.
 
 ### Add Item
-A simple form to add a new item by providing its name and price.
+Quickly add a new item by entering its name and price.
 
-## Tech Stack & Architecture
+***
 
-This project is built using modern Android development tools and follows the MVVM (Model-View-ViewModel) architecture.
+## 🧱 Tech Stack & Architecture
 
-- **UI**: [Jetpack Compose](https://developer.android.com/jetpack/compose) for declarative UI development.
+WorthTheHours is built using modern Android best practices and follows a **clean MVVM architecture**.
+
+- **Language**: Kotlin
+- **UI**: Jetpack Compose + Material 3
 - **Architecture**: MVVM
-- **Dependency Injection**: [Hilt](https://dagger.dev/hilt/) for managing dependencies.
-- **Asynchronous Operations**: Kotlin Coroutines and Flow for managing background threads and data streams.
-- **Navigation**: [Navigation Compose](https://developer.android.com/jetpack/compose/navigation) for navigating between screen composables.
-- **Data Persistence**:
-    - [Room](https://developer.android.com/training/data-storage/room) for storing the list of items in a local SQLite database.
-    - [EncryptedSharedPreferences](https://developer.android.com/reference/androidx/security/crypto/EncryptedSharedPreferences) for securely storing the user's salary information.
-    - [DataStore](https://developer.android.com/topic/libraries/architecture/datastore) for storing user preferences, such as whether the initial setup is complete.
+- **Dependency Injection**: Hilt
+- **Async & State**: Kotlin Coroutines + Flow
+- **Navigation**: Navigation Compose
+- **Local Persistence**:
+  - **Room** for storing items
+  - **EncryptedSharedPreferences** for securely storing salary data
+  - **DataStore** for lightweight user preferences
 
 ## Project Structure
 - `data/`: Contains repositories and local data sources (Room DAO, UserPreferencesRepository, EncryptedSharedPreferences wrapper).
@@ -43,13 +80,50 @@ This project is built using modern Android development tools and follows the MVV
 - `ui/`: Jetpack Compose screens, the navigation graph, and theming.
 - `viewmodel/`: ViewModels responsible for UI logic and state management for each screen.
 
-## How to Build
+*** 
 
-To build and run the project, follow these steps:
+## 🗂 Project Structure
+```
+app/
+├── data/
+│ ├── src/main database, DAO, preferences
+│ └── repository/ # Data abstraction layer
+├── di/ # Hilt modules
+├── model/ # Data models
+├── ui/
+│ ├── screens/ # Compose screens
+│ ├── theme/ # Material theme
+│ └── NavGraph.kt
+├── viewmodel/ # ViewModels
+```
+
+*** 
+
+## 🛠 How to Build & Run
+
 1. Clone the repository:
-   ```bash
+   ``` bash
    git clone https://github.com/paoloronco/WorthTheHours.git
-   ```
-2. Open the project in Android Studio.
-3. Let Gradle sync the project dependencies.
-4. Run the app on an Android emulator or a physical device.
+  ```
+
+2. Open the project in **Android Studio**
+
+3. Let Gradle sync complete
+
+4. Run the app on an emulator or physical device
+
+> Note: `local.properties` is generated automatically by Android Studio and is not required in the repository.
+
+***
+
+## 🔒 Privacy First
+
+WorthTheHours is designed with privacy in mind:
+
+* No backend servers
+* No analytics tracking
+* No personal data leaves your device
+
+Your time — and your data — are yours.
+
+***
