@@ -84,17 +84,26 @@ WorthTheHours is built using modern Android best practices and follows a **clean
 
 ## 🗂 Project Structure
 ```
-app/
-├── data/
-│ ├── src/main database, DAO, preferences
-│ └── repository/ # Data abstraction layer
-├── di/ # Hilt modules
-├── model/ # Data models
-├── ui/
-│ ├── screens/ # Compose screens
-│ ├── theme/ # Material theme
-│ └── NavGraph.kt
-├── viewmodel/ # ViewModels
+app
+ ├─ manifests
+ │   └─ AndroidManifest.xml
+ ├─ kotlin+java
+ │   └─ com.paoloronco.worththehours
+ │        ├─ data
+ │        │   ├─ local
+ │        │   └─ repository
+ │        ├─ di
+ │        ├─ model
+ │        ├─ ui
+ │        │   ├─ screens
+ │        │   ├─ theme
+ │        │   └─ NavGraph.kt
+ │        ├─ viewmodel
+ │        ├─ MainActivity.kt
+ │        └─ WorthTheHoursApplication.kt
+ ├─ java (generated)
+ └─ res
+
 ```
 
 *** 

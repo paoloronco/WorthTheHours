@@ -26,13 +26,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -51,13 +49,18 @@ fun ItemListScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Worth The Hours", style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold) },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color.Transparent
-                ),
+                title = {
+                    Text(
+                        text = "WorthTheHours",
+                        style = MaterialTheme.typography.titleLarge
+                    )
+                },
                 actions = {
                     IconButton(onClick = onGoToSettings) {
-                        Icon(Icons.Default.Settings, contentDescription = "Settings")
+                        Icon(
+                            imageVector = Icons.Default.Settings,
+                            contentDescription = "Settings"
+                        )
                     }
                 }
             )
@@ -78,64 +81,81 @@ fun ItemListScreen(
                 CircularProgressIndicator()
             }
         } else {
-            LazyColumn(
+            Column(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(paddingValues)
-                    .padding(horizontal = 16.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp)
+                    .padding(horizontal = 16.dp)
             ) {
-                items(state.items) { itemWorkTime ->
-                    Card(
-                        modifier = Modifier.fillMaxWidth(),
-                        colors = CardDefaults.cardColors(
-                            containerColor = MaterialTheme.colorScheme.surfaceVariant
-                        )
-                    ) {
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(16.dp),
-                            verticalAlignment = Alignment.CenterVertically
+                LazyColumn(
+                    modifier = Modifier.fillMaxSize(),
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    items(state.items) { itemWorkTime ->
+                        Card(
+                            modifier = Modifier.fillMaxWidth(),
+                            colors = CardDefaults.cardColors(
+                                containerColor = MaterialTheme.colorScheme.surfaceVariant
+                            )
                         ) {
-                            Column(modifier = Modifier.weight(1f)) {
-                                Text(itemWorkTime.item.name, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleLarge)
-                                Text("€${String.format("%.2f", itemWorkTime.item.price)}", style = MaterialTheme.typography.bodyLarge)
-                            }
-                            Spacer(modifier = Modifier.width(16.dp))
-                            Card(
-                                colors = CardDefaults.cardColors(
-                                    containerColor = MaterialTheme.colorScheme.secondaryContainer
-                                )
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(16.dp),
+                                verticalAlignment = Alignment.CenterVertically
                             ) {
-                                Row(
-                                    modifier = Modifier.padding(
-                                        horizontal = 12.dp,
-                                        vertical = 8.dp
-                                    ),
-                                    verticalAlignment = Alignment.CenterVertically
-                                ) {
-                                    Icon(
-                                        Icons.Default.Schedule,
-                                        contentDescription = "Work Time",
-                                        tint = MaterialTheme.colorScheme.onSecondaryContainer
-                                    )
-                                    Spacer(modifier = Modifier.width(8.dp))
+                                Column(modifier = Modifier.weight(1f)) {
                                     Text(
-                                        text = itemWorkTime.workTime,
-                                        color = MaterialTheme.colorScheme.onSecondaryContainer,
+                                        itemWorkTime.item.name,
                                         fontWeight = FontWeight.Bold,
-                                        style = MaterialTheme.typography.titleMedium
+                                        style = MaterialTheme.typography.titleLarge
+                                    )
+                                    Text(
+                                        "€${String.format("%.2f", itemWorkTime.item.price)}",
+                                        style = MaterialTheme.typography.bodyLarge
                                     )
                                 }
-                            }
-                            Spacer(modifier = Modifier.width(8.dp))
-                            IconButton(onClick = { viewModel.onEvent(ItemsEvent.DeleteItem(itemWorkTime)) }) {
-                                Icon(
-                                    Icons.Default.Delete,
-                                    contentDescription = "Delete Item",
-                                    tint = MaterialTheme.colorScheme.error
-                                )
+                                Spacer(modifier = Modifier.width(16.dp))
+                                Card(
+                                    colors = CardDefaults.cardColors(
+                                        containerColor = MaterialTheme.colorScheme.secondaryContainer
+                                    )
+                                ) {
+                                    Row(
+                                        modifier = Modifier.padding(
+                                            horizontal = 12.dp,
+                                            vertical = 8.dp
+                                        ),
+                                        verticalAlignment = Alignment.CenterVertically
+                                    ) {
+                                        Icon(
+                                            Icons.Default.Schedule,
+                                            contentDescription = "Work Time",
+                                            tint = MaterialTheme.colorScheme.onSecondaryContainer
+                                        )
+                                        Spacer(modifier = Modifier.width(8.dp))
+                                        Text(
+                                            text = itemWorkTime.workTime,
+                                            color = MaterialTheme.colorScheme.onSecondaryContainer,
+                                            fontWeight = FontWeight.Bold,
+                                            style = MaterialTheme.typography.titleMedium
+                                        )
+                                    }
+                                }
+                                Spacer(modifier = Modifier.width(8.dp))
+                                IconButton(
+                                    onClick = {
+                                        viewModel.onEvent(
+                                            ItemsEvent.DeleteItem(itemWorkTime)
+                                        )
+                                    }
+                                ) {
+                                    Icon(
+                                        Icons.Default.Delete,
+                                        contentDescription = "Delete Item",
+                                        tint = MaterialTheme.colorScheme.error
+                                    )
+                                }
                             }
                         }
                     }

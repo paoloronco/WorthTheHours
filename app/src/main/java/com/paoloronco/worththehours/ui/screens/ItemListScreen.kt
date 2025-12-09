@@ -32,7 +32,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -51,9 +50,14 @@ fun ItemListScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Worth The Hours", style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold) },
+                title = {
+                    Text(
+                        text = "WorthTheHours",
+                        style = MaterialTheme.typography.titleLarge
+                    )
+                },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color.Transparent
+                    containerColor = MaterialTheme.colorScheme.primaryContainer
                 ),
                 actions = {
                     IconButton(onClick = onGoToSettings) {
