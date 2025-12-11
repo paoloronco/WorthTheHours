@@ -9,7 +9,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.paoloronco.worththehours.ui.screens.AddItemScreen
 import com.paoloronco.worththehours.ui.screens.ItemListScreen
-import com.paoloronco.worththehours.ui.screens.SalaryScreen
+import com.paoloronco.worththehours.ui.screens.SettingsScreen
 import com.paoloronco.worththehours.viewmodel.MainViewModel
 
 @Composable
@@ -25,23 +25,15 @@ fun NavGraph(mainViewModel: MainViewModel = hiltViewModel()) {
             composable("itemList") {
                 ItemListScreen(
                     onAddItem = { navController.navigate("addItem") },
-                    onGoToSettings = { navController.navigate("salary") }
+                    onGoToSettings = { navController.navigate("settings") }
                 )
             }
             composable("addItem") {
                 AddItemScreen(onNavigateBack = { navController.popBackStack() })
             }
-            composable("salary") {
-                SalaryScreen(
-                    onNavigateBack = {
-                        if (navController.previousBackStackEntry != null) {
-                            navController.popBackStack()
-                        } else {
-                            navController.navigate("itemList") {
-                                popUpTo("salary") { inclusive = true }
-                            }
-                        }
-                    }
+            composable("settings") {
+                SettingsScreen(
+                    onNavigateBack = { navController.popBackStack() }
                 )
             }
         }

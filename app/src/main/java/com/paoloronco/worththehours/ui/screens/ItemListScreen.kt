@@ -31,9 +31,11 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.paoloronco.worththehours.R
 import com.paoloronco.worththehours.viewmodel.ItemsEvent
 import com.paoloronco.worththehours.viewmodel.ItemsViewModel
 import java.util.Locale
@@ -55,7 +57,7 @@ fun ItemListScreen(
                     IconButton(onClick = onGoToSettings) {
                         Icon(
                             Icons.Default.Settings,
-                            contentDescription = "Settings"
+                            contentDescription = stringResource(id = R.string.settings)
                         )
                     }
                 }

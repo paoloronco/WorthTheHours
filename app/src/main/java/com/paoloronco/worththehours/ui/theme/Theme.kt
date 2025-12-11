@@ -10,10 +10,14 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.paoloronco.worththehours.viewmodel.SettingsViewModel
 
 private val DarkColorScheme = darkColorScheme(
     primary = md_theme_dark_primary,
@@ -81,18 +85,19 @@ private val LightColorScheme = lightColorScheme(
 
 @Composable
 fun WorthTheHoursTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
+    settingsViewModel: SettingsViewModel = hiltViewModel(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {
+    val isDarkMode by settingsViewModel.isDarkMode.collectAsState(initial = isSystemInDarkTheme())
     val colorScheme = when {
         dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
             val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+            if (isDarkMode) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
 
-        darkTheme -> DarkColorScheme
+        isDarkMode -> DarkColorScheme
         else -> LightColorScheme
     }
     val view = LocalView.current
@@ -100,7 +105,7 @@ fun WorthTheHoursTheme(
         SideEffect {
             val window = (view.context as Activity).window
             window.statusBarColor = colorScheme.primary.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
+            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !isDarkMode
         }
     }
 
