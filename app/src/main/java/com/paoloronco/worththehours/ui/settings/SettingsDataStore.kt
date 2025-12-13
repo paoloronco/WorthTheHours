@@ -1,3 +1,4 @@
+
 package com.paoloronco.worththehours.ui.settings
 
 import android.content.Context
@@ -16,6 +17,7 @@ class SettingsDataStore(val context: Context) {
 
     private object PreferencesKeys {
         val DARK_MODE_KEY = booleanPreferencesKey("dark_mode")
+        val IS_SET_UP = booleanPreferencesKey("is_set_up")
     }
 
     suspend fun setDarkMode(isDarkMode: Boolean) {
@@ -26,7 +28,19 @@ class SettingsDataStore(val context: Context) {
 
     fun isDarkMode(): Flow<Boolean> {
         return context.dataStore.data.map { preferences ->
-                preferences[PreferencesKeys.DARK_MODE_KEY] ?: false
-            }
+            preferences[PreferencesKeys.DARK_MODE_KEY] ?: false
+        }
+    }
+
+    suspend fun setIsSetUp(isSetUp: Boolean) {
+        context.dataStore.edit { preferences ->
+            preferences[PreferencesKeys.IS_SET_UP] = isSetUp
+        }
+    }
+
+    fun isSetUp(): Flow<Boolean> {
+        return context.dataStore.data.map { preferences ->
+            preferences[PreferencesKeys.IS_SET_UP] ?: false
+        }
     }
 }

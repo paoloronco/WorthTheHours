@@ -1,8 +1,9 @@
+
 package com.paoloronco.worththehours.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.paoloronco.worththehours.data.local.UserPreferencesRepository
+import com.paoloronco.worththehours.ui.settings.SettingsDataStore
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -12,15 +13,15 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    userPreferencesRepository: UserPreferencesRepository
+    settingsDataStore: SettingsDataStore
 ) : ViewModel() {
 
-    val startDestination: StateFlow<String> = userPreferencesRepository.isSetupComplete
-        .map { isSetupComplete ->
-            if (isSetupComplete) {
+    val startDestination: StateFlow<String> = settingsDataStore.isSetUp()
+        .map { isSetUp ->
+            if (isSetUp) {
                 "itemList"
             } else {
-                "salary"
+                "settings"
             }
         }
         .stateIn(

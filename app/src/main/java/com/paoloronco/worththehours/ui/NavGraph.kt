@@ -33,7 +33,14 @@ fun NavGraph(mainViewModel: MainViewModel = hiltViewModel()) {
             }
             composable("settings") {
                 SettingsScreen(
-                    onNavigateBack = { navController.popBackStack() }
+                    onNavigateBack = { navController.popBackStack() },
+                    onSalarySaved = {
+                        navController.navigate("itemList") {
+                            popUpTo("settings") {
+                                inclusive = true
+                            }
+                        }
+                    }
                 )
             }
         }

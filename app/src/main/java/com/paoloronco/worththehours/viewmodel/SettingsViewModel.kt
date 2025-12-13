@@ -110,7 +110,7 @@ class SettingsViewModel @Inject constructor(
 
         viewModelScope.launch {
             salaryRepository.saveHourlyWage(wage)
-            userPreferencesRepository.setIsSetupComplete(true)
+            settingsDataStore.setIsSetUp(true)
             _uiState.update { it.copy(salarySetSuccessfully = true) }
         }
     }
@@ -137,7 +137,7 @@ class SettingsViewModel @Inject constructor(
         val calculatedWage = salary / hours
         viewModelScope.launch {
             salaryRepository.saveHourlyWage(calculatedWage)
-            userPreferencesRepository.setIsSetupComplete(true)
+            settingsDataStore.setIsSetUp(true)
             _uiState.update { it.copy(salarySetSuccessfully = true) }
         }
     }
