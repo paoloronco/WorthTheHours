@@ -8,7 +8,9 @@ Instead of asking *“Can I afford this?”*, the app helps you ask a more meani
 
 By visualizing expenses in terms of working time, WorthTheHours encourages conscious, mindful purchasing decisions.
 
-*** 
+### Play Store APP: [WorthTheHours](https://play.google.com/store/apps/details?id=com.paoloronco.worththehours&hl=it) 
+
+***
 
 ## ✨ Key Features
 
@@ -36,7 +38,7 @@ By visualizing expenses in terms of working time, WorthTheHours encourages consc
   - Uses **Material 3** for a clean, minimal, modern look
   - Supports light and dark themes
 
-*** 
+***
 
 ## 📱 App Screens
 
@@ -80,7 +82,7 @@ WorthTheHours is built using modern Android best practices and follows a **clean
 - `ui/`: Jetpack Compose screens, the navigation graph, and theming.
 - `viewmodel/`: ViewModels responsible for UI logic and state management for each screen.
 
-*** 
+***
 
 ## 🗂 Project Structure
 ```
@@ -106,7 +108,7 @@ app
 
 ```
 
-*** 
+***
 
 ## 🛠 How to Build & Run
 
