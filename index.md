@@ -1,4 +1,10 @@
 # WorthTheHours
+<p style="white-space:nowrap;">
+  <img src="https://storage.googleapis.com/github-worththehours/appicon.png" width="100" style="vertical-align:middle;">
+  <span style="display:inline-block; font-size:1.35em; font-weight:600; vertical-align:middle; margin-left:10px;">
+    <a href="https://play.google.com/store/apps/details?id=com.paoloronco.worththehours&hl=it">▶️ Available on Google Play</a>
+  </span>
+</p>
 
 **WorthTheHours** is a native Android app that helps you rethink spending by converting prices into **hours of work**.
 
@@ -8,13 +14,24 @@ Instead of asking *“Can I afford this?”*, the app helps you ask a more meani
 
 By visualizing expenses in terms of working time, WorthTheHours encourages conscious, mindful purchasing decisions.
 
-*** 
+---
+
+## 📱 App Screens
+
+<p align="center">
+  <img src="https://storage.googleapis.com/github-worththehours/Phone-1a-white.png" width="200">
+  <img src="https://storage.googleapis.com/github-worththehours/Phone-2-white.png" width="200">
+  <img src="https://storage.googleapis.com/github-worththehours/Phone-3.png" width="200">
+  <img src="https://storage.googleapis.com/github-worththehours/Phone-4a.png" width="200">
+</p>
+
+---
 
 ## ✨ Key Features
 
 - **Flexible Salary Setup**
   - Enter your net **hourly wage** directly  
-  - or calculate it from **monthly net salary + working hours**
+  - Or calculate it from **monthly net salary + working hours**
   - Salary data is stored **securely and locally**, encrypted on the device
 
 - **Item Tracking**
@@ -36,27 +53,7 @@ By visualizing expenses in terms of working time, WorthTheHours encourages consc
   - Uses **Material 3** for a clean, minimal, modern look
   - Supports light and dark themes
 
-*** 
-
-## 📱 App Screens
-
-### Salary Settings
-Set your net hourly wage or calculate it from your monthly salary and working hours.  
-This can be changed at any time from the main screen.
-
-### Item List
-The main screen shows your saved items.  
-Each item displays:
-- Name
-- Price
-- Equivalent working time (hours + minutes)
-
-Items can be removed with a simple action.
-
-### Add Item
-Quickly add a new item by entering its name and price.
-
-***
+---
 
 ## 🧱 Tech Stack & Architecture
 
@@ -73,66 +70,7 @@ WorthTheHours is built using modern Android best practices and follows a **clean
   - **EncryptedSharedPreferences** for securely storing salary data
   - **DataStore** for lightweight user preferences
 
-## Project Structure
-- `data/`: Contains repositories and local data sources (Room DAO, UserPreferencesRepository, EncryptedSharedPreferences wrapper).
-- `di/`: Hilt dependency injection modules.
-- `model/`: Data models, such as the `Item` entity.
-- `ui/`: Jetpack Compose screens, the navigation graph, and theming.
-- `viewmodel/`: ViewModels responsible for UI logic and state management for each screen.
-
-*** 
+---
 
 ## 🗂 Project Structure
-```
-app
- ├─ manifests
- │   └─ AndroidManifest.xml
- ├─ kotlin+java
- │   └─ com.paoloronco.worththehours
- │        ├─ data
- │        │   ├─ local
- │        │   └─ repository
- │        ├─ di
- │        ├─ model
- │        ├─ ui
- │        │   ├─ screens
- │        │   ├─ theme
- │        │   └─ NavGraph.kt
- │        ├─ viewmodel
- │        ├─ MainActivity.kt
- │        └─ WorthTheHoursApplication.kt
- ├─ java (generated)
- └─ res
 
-```
-
-*** 
-
-## 🛠 How to Build & Run
-
-1. Clone the repository:
-   ``` bash
-   git clone https://github.com/paoloronco/WorthTheHours.git
-  ```
-
-2. Open the project in **Android Studio**
-
-3. Let Gradle sync complete
-
-4. Run the app on an emulator or physical device
-
-> Note: `local.properties` is generated automatically by Android Studio and is not required in the repository.
-
-***
-
-## 🔒 Privacy First
-
-WorthTheHours is designed with privacy in mind:
-
-* No backend servers
-* No analytics tracking
-* No personal data leaves your device
-
-Your time — and your data — are yours.
-
-***
